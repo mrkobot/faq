@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/4.3.9/iframeResizer.contentWindow.min.js"></script>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -87,9 +88,7 @@
     line-height: 1.5;
   }
 
-  .faq-q:hover {
-    color: #444;
-  }
+  .faq-q:hover { color: #444; }
 
   .faq-q span {
     flex: 1;
@@ -124,13 +123,9 @@
     text-underline-offset: 2px;
   }
 
-  .faq-a a:hover {
-    color: #444;
-  }
+  .faq-a a:hover { color: #444; }
 
-  .faq-item.open .faq-a {
-    display: block;
-  }
+  .faq-item.open .faq-a { display: block; }
 
   @media (max-width: 600px) {
     body { padding: 2.5rem 1rem; }
@@ -228,21 +223,6 @@ function faqSyncBtn() {
 }
 
 faqBuild();
-
-function faqPostHeight() {
-  var h = document.body.scrollHeight;
-  window.parent.postMessage({ faqHeight: h }, '*');
-}
-
-window.addEventListener('load', function() { setTimeout(faqPostHeight, 200); });
-window.addEventListener('resize', function() { setTimeout(faqPostHeight, 100); });
-
-var faqObserver = new MutationObserver(function() { setTimeout(faqPostHeight, 100); });
-faqObserver.observe(document.getElementById('faq-list'), { subtree: true, attributes: true, attributeFilter: ['class'] });
-
-if (window.ResizeObserver) {
-  new ResizeObserver(function() { setTimeout(faqPostHeight, 100); }).observe(document.body);
-}
 </script>
 </body>
 </html>
